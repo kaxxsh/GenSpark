@@ -45,6 +45,6 @@ The repository for this project can be found [here](https://github.com/gayat19/F
 
 ## RESULT
 
-![Two Sum](https://1drv.ms/i/s!AupjenD40P9FjZIQJJXuDswhIqpnJw?e=AYu0Cf)
+![Two Sum](https://github.com/kaxxsh/demo1/blob/main/Results/Day%201/Two%20Sum.png)
 
-![Palindrome Number](https://1drv.ms/i/s!AupjenD40P9FjZIQJJXuDswhIqpnJw?e=BPlfvp)
+![Palindrome Number](https://github.com/kaxxsh/demo1/blob/main/Results/Day%201/palindrom.png)
