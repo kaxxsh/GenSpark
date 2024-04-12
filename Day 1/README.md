@@ -39,10 +39,6 @@ var isPalindrome = function (x) {
 };
 ```
 
-## Repository
-
-The repository for this project can be found [here](https://github.com/gayat19/FSD09Apr2024).
-
 ## RESULT
 
 1. Two Sum 
@@ -52,3 +48,7 @@ The repository for this project can be found [here](https://github.com/gayat19/F
 2. Palindrome Number
 
 ![Palindrome Number](https://github.com/kaxxsh/demo1/blob/main/Results/Day%201/palindrom.png)
+
+## Repository
+
+The repository for this project can be found [here](https://github.com/gayat19/FSD09Apr2024).

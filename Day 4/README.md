@@ -3,6 +3,7 @@
 ## Task 1: Create a Doctor class with details
 
 Created a `Doctor` class in C# with the following properties:
+
 - Id
 - Name
 - Age
@@ -25,6 +26,7 @@ Implemented a method that takes a speciality as input and prints the details of 
 ## Task 5: Validate a number
 
 Implemented a method to validate a number based on the following rules:
+
 - Reverse the number
 - Multiply each digit at an even position by 2
 - If the result is a two-digit number, sum the digits
@@ -33,11 +35,22 @@ Implemented a method to validate a number based on the following rules:
 
 ## How to Run
 
-Ensure you have .NET 6 installed on your machine. 
+Ensure you have .NET 6 installed on your machine.
 
 1. Open a terminal.
 2. Navigate to the project directory.
 3. Run the program using the command `dotnet run`.
 
 ## Demo
-![Demo]()
+
+1. Doctor Management
+
+![Doctor Management](https://github.com/kaxxsh/demo1/blob/main/Results/Day%204/Doctor%20Management.jpg)
+
+1. Card Validation
+
+![Card Validation](https://github.com/kaxxsh/demo1/blob/main/Results/Day%204/Card%20%20Validation.jpg)
+
+## Repository
+
+The repository for this project can be found [here](https://github.com/gayat19/FSD09Apr2024).
