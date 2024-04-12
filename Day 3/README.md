@@ -21,4 +21,4 @@ This repository has solutions for day 3 exercises of GenSpark training. They are
 You need .NET 6 to run these applications. After installing, use the `dotnet run` command in the terminal from the project directory.
 
 ## Demo
-![Demo]()
+![Basic Arithmetic]()
