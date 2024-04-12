@@ -21,4 +21,27 @@ This repository has solutions for day 3 exercises of GenSpark training. They are
 You need .NET 6 to run these applications. After installing, use the `dotnet run` command in the terminal from the project directory.
 
 ## Demo
-![Basic Arithmetic]()
+
+1. Basic Arithmetic
+
+![Basic Arithmetic](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/Average%20Finder.jpg)
+
+2. Greatest Number Finder
+
+![Greatest Number Finder](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/Basic%20Arithmetic.jpg)
+
+3. Average Finder
+
+![Average Finder](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/Greatest%20Number%20Finder.jpg)
+
+4. Name Length Finder
+
+![Name Length Finder](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/Login%20System.jpg)
+
+5. Login System
+
+![Login System](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/Name%20Length%20Finder.jpg)
+
+6. String Analyzer
+
+![String Analyzer](https://github.com/kaxxsh/demo1/blob/main/Results/Day%203/String%20Analyzer.jpg)
