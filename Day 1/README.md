@@ -45,6 +45,10 @@ The repository for this project can be found [here](https://github.com/gayat19/F
 
 ## RESULT
 
+Two Sum 
+
 ![Two Sum](https://github.com/kaxxsh/demo1/blob/main/Results/Day%201/Two%20Sum.png)
+
+Palindrome Number
 
 ![Palindrome Number](https://github.com/kaxxsh/demo1/blob/main/Results/Day%201/palindrom.png)
