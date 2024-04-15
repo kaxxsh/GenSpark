@@ -6,7 +6,7 @@
 
 - Find the three reapting Number in an Array
 
-## CRED OPERATION ON EMPLOYEE
+## CRED OPERATION ON EMPLOYEE ( DONE USING ARRAY )
 
 - CREATE Employee
 
@@ -16,7 +16,7 @@
 
 # Afternoon Task 
 
-## CRED OPERATION ON EMPLOYEE
+## CRED OPERATION ON EMPLOYEE ( DONE USING ARRAY )
 
 - PUT Edit Employee Using ID
 
@@ -55,29 +55,37 @@ Congrats!!! you won!!!!!
 
 ## RESULT
 
-1. 
+1. REAPTING NUMBER
 
-![REAPTING NUMBER]()
+![REAPTING NUMBER](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/ReaptingNumber.png)
 
-2. 
+2. CREAT
 
-![CREATE]()
+![CREATE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/CREATE.png)
 
-3. 
+3. GET-ALL
 
-![GET-ALL]()
+![GET-ALL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/GETALL.png)
 
-4. 
+4. GET-ONE
 
-![GET-ONE]()
+![GET-ONE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/FINDONE.png)
 
-5. 
+5. PUT
 
-![PUT OR PATCH]()
+![PUT OR PATCH](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/PUT.png)
 
-6. 
+6. DELETE
 
-![DELETE]()
+![DELETE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/DELETE.png)
+
+7. COW OR BULL
+
+![COW-OR-BULL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/cowandbull.png)
+
+8. COW OR BULL (Leetcode)
+
+![COW-OR-BULL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/leetcode.png)
 
 ## Repository
 
