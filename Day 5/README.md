@@ -55,35 +55,35 @@ Congrats!!! you won!!!!!
 
 ## RESULT
 
-1. REAPTING NUMBER
+1. [REAPTING NUMBER](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/ThreeReaptingslu/ThreeReapting/Program.cs)
 
 ![REAPTING NUMBER](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/ReaptingNumber.png)
 
-2. CREAT
+2. [CREAT](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/EmployeeManagement/EmployeeManagement.Console/Program.cs)
 
 ![CREATE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/CREATE.png)
 
-3. GET-ALL
+3. [GET-ALL](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/EmployeeManagement/EmployeeManagement.Console/Program.cs)
 
 ![GET-ALL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/GETALL.png)
 
-4. GET-ONE
+4. [GET-ONE](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/EmployeeManagement/EmployeeManagement.Console/Program.cs)
 
 ![GET-ONE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/FINDONE.png)
 
-5. PUT
+5. [PUT](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/EmployeeManagement/EmployeeManagement.Console/Program.cs)
 
 ![PUT OR PATCH](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/PUT.png)
 
-6. DELETE
+6. [DELETE](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/EmployeeManagement/EmployeeManagement.Console/Program.cs)
 
 ![DELETE](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/DELETE.png)
 
-7. COW OR BULL
+7. [COW OR BULL](https://github.com/kaxxsh/GenSpark/blob/main/Day%205/CowAndBullGameslu/CowAndBullGame/Program.cs)
 
 ![COW-OR-BULL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/cowandbull.png)
 
-8. COW OR BULL (Leetcode)
+8. [COW OR BULL (Leetcode)](https://leetcode.com/problems/bulls-and-cows/description/)
 
 ![COW-OR-BULL](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%205/leetcode.png)
 
