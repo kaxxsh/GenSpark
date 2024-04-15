@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34804.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Console", "EmployeeManagement.Console\EmployeeManagement.Console.csproj", "{EA2E55C9-AB48-454A-BC75-4ED24AF92BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIB", "LIB\LIB.csproj", "{575F5FE9-05E5-41A3-AF50-82581D6FB0B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA2E55C9-AB48-454A-BC75-4ED24AF92BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2E55C9-AB48-454A-BC75-4ED24AF92BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2E55C9-AB48-454A-BC75-4ED24AF92BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2E55C9-AB48-454A-BC75-4ED24AF92BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575F5FE9-05E5-41A3-AF50-82581D6FB0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575F5FE9-05E5-41A3-AF50-82581D6FB0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575F5FE9-05E5-41A3-AF50-82581D6FB0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575F5FE9-05E5-41A3-AF50-82581D6FB0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51D75C58-213D-460E-8350-BAAAEB093EA6}
+	EndGlobalSection
+EndGlobal
