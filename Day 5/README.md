@@ -55,7 +55,29 @@ Congrats!!! you won!!!!!
 
 ## RESULT
 
+1. 
 
+![REAPTING NUMBER]()
+
+2. 
+
+![CREATE]()
+
+3. 
+
+![GET-ALL]()
+
+4. 
+
+![GET-ONE]()
+
+5. 
+
+![PUT OR PATCH]()
+
+6. 
+
+![DELETE]()
 
 ## Repository
 
