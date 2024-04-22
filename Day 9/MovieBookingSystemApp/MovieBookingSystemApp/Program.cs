@@ -9,12 +9,14 @@ namespace MovieBookingSystemApp
     {
         private static MovieManager _movieManager;
         private static BookingManager _bookingManager;
+        private static FeedbackManager _feedbackManager;
 
         static void Main(string[] args)
         {
-            // Initialize movie manager and booking manager
+            // Initialize movie manager, booking manager, and feedback manager
             _movieManager = new MovieManager();
             _bookingManager = new BookingManager();
+            _feedbackManager = new FeedbackManager();
 
             // Run the main menu
             DisplayMainMenu();
@@ -32,7 +34,9 @@ namespace MovieBookingSystemApp
                 Console.WriteLine("4. Add a New Movie");
                 Console.WriteLine("5. Edit Movie");
                 Console.WriteLine("6. Delete Movie");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Provide Feedback");
+                Console.WriteLine("8. View All Feedback");
+                Console.WriteLine("9. Exit");
 
                 Console.Write("Enter your choice: ");
                 string choice = Console.ReadLine();
@@ -58,6 +62,12 @@ namespace MovieBookingSystemApp
                         DeleteMovie();
                         break;
                     case "7":
+                        ProvideFeedback();
+                        break;
+                    case "8":
+                        ViewAllFeedback();
+                        break;
+                    case "9":
                         Console.WriteLine("Thank you for using the Movie Booking System. Goodbye!");
                         Environment.Exit(0);
                         break;
@@ -233,7 +243,8 @@ namespace MovieBookingSystemApp
 
         static decimal CalculateDiscount(decimal totalCost)
         {
-            return totalCost * 0.05m; // 5% discount
+            return totalCost * 0.05m
+; // 5% discount
         }
 
         static void AddNewMovie()
@@ -263,7 +274,7 @@ namespace MovieBookingSystemApp
                     Console.Write("Ticket Price: ");
                 }
 
-                Movie newMovie = new Movie(0, title, genre, duration,  new List<DateTime>(), ticketPrice);
+                Movie newMovie = new Movie(0, title, genre, duration, new List<DateTime>(), ticketPrice);
                 _movieManager.AddMovie(newMovie);
 
                 Console.WriteLine("-------------------------------");
@@ -375,6 +386,84 @@ namespace MovieBookingSystemApp
                 Console.WriteLine("-------------------------------");
                 Console.WriteLine($"Error: {ex.Message}");
                 Console.WriteLine("-------------------------------");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+        static void ProvideFeedback()
+        {
+            try
+            {
+                Console.WriteLine("Please provide your feedback:");
+                Console.Write("Your Name: ");
+                string customerName = Console.ReadLine();
+
+                Console.Write("Contact Information: ");
+                string contactInfo = Console.ReadLine();
+
+                // Select a movie for feedback
+                Console.WriteLine("Select a movie for feedback:");
+                List<Movie> movies = _movieManager.GetAllMovies();
+                for (int i = 0; i < movies.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {movies[i].Title}");
+                }
+                Console.Write("Enter the number corresponding to the movie: ");
+                int movieIndex;
+                if (!int.TryParse(Console.ReadLine(), out movieIndex) || movieIndex < 1 || movieIndex > movies.Count)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    return;
+                }
+                string selectedMovieName = movies[movieIndex - 1].Title;
+
+                Console.WriteLine("Message: ");
+                string message = Console.ReadLine();
+
+                Console.Write("Rating (1 to 5 stars): ");
+                int rating;
+                while (!int.TryParse(Console.ReadLine(), out rating) || rating < 1 || rating > 5)
+                {
+                    Console.WriteLine("Invalid input. Please enter a rating between 1 and 5.");
+                    Console.Write("Rating (1 to 5 stars): ");
+                }
+
+                Feedback feedback = new Feedback(customerName, contactInfo, selectedMovieName, message, rating);
+                _feedbackManager.AddFeedback(feedback);
+
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Thank you for your feedback!");
+                Console.WriteLine("-------------------------------");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+        static void ViewAllFeedback()
+        {
+            try
+            {
+                List<Feedback> feedbacks = _feedbackManager.GetAllFeedback();
+                Console.WriteLine("All Feedbacks:");
+                foreach (var feedback in feedbacks)
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine(feedback);
+                    Console.WriteLine("-------------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
             Console.WriteLine("Press any key to continue...");
