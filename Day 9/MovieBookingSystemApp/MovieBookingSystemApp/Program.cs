@@ -12,23 +12,30 @@ namespace MovieBookingSystemApp
 
         static void Main(string[] args)
         {
-            InitializeManagers();
-            DisplayMainMenu();
-        }
-
-        static void InitializeManagers()
-        {
+            // Initialize movie manager and booking manager
             _movieManager = new MovieManager();
             _bookingManager = new BookingManager();
+
+            // Run the main menu
+            DisplayMainMenu();
         }
 
         static void DisplayMainMenu()
         {
             while (true)
             {
-                Console.Clear();
-                PrintMainMenu();
-                string choice = GetUserChoice();
+                Console.Clear(); // Clear the console screen
+                Console.WriteLine("Welcome to the Movie Booking System!");
+                Console.WriteLine("1. View Movie Listing");
+                Console.WriteLine("2. Book Tickets");
+                Console.WriteLine("3. Cancel Tickets");
+                Console.WriteLine("4. Add a New Movie");
+                Console.WriteLine("5. Edit Movie");
+                Console.WriteLine("6. Delete Movie");
+                Console.WriteLine("7. Exit");
+
+                Console.Write("Enter your choice: ");
+                string choice = Console.ReadLine();
 
                 switch (choice)
                 {
@@ -42,28 +49,23 @@ namespace MovieBookingSystemApp
                         CancelTickets();
                         break;
                     case "4":
-                        ExitApplication();
+                        AddNewMovie();
+                        break;
+                    case "5":
+                        EditMovie();
+                        break;
+                    case "6":
+                        DeleteMovie();
+                        break;
+                    case "7":
+                        Console.WriteLine("Thank you for using the Movie Booking System. Goodbye!");
+                        Environment.Exit(0);
                         break;
                     default:
-                        DisplayInvalidChoiceMessage();
+                        Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
             }
-        }
-
-        static void PrintMainMenu()
-        {
-            Console.WriteLine("Welcome to the Movie Booking System!");
-            Console.WriteLine("1. View Movie Listing");
-            Console.WriteLine("2. Book Tickets");
-            Console.WriteLine("3. Cancel Tickets");
-            Console.WriteLine("4. Exit");
-            Console.Write("Enter your choice: ");
-        }
-
-        static string GetUserChoice()
-        {
-            return Console.ReadLine();
         }
 
         static void ViewMovieListing()
@@ -71,116 +73,157 @@ namespace MovieBookingSystemApp
             try
             {
                 List<Movie> movies = _movieManager.GetAllMovies();
-                DisplayMovieListing(movies);
+                Console.WriteLine("Movie Listing:");
+                foreach (var movie in movies)
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine(movie);
+                    Console.WriteLine("-------------------------------");
+                }
             }
             catch (Exception ex)
             {
-                DisplayErrorMessage(ex.Message);
+                Console.WriteLine($"Error: {ex.Message}");
             }
-            Console.ReadKey();
-        }
 
-        static void DisplayMovieListing(List<Movie> movies)
-        {
-            Console.WriteLine("Movie Listing:");
-            foreach (var movie in movies)
-            {
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine(movie);
-                Console.WriteLine("-------------------------------");
-            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
 
         static void BookTickets()
         {
             try
             {
-                int movieIndex = GetMovieSelection();
-                Movie selectedMovie = GetSelectedMovie(movieIndex);
-                DateTime selectedTiming = GetSelectedTiming(selectedMovie);
-                string name = GetCustomerName();
-                string contactInfo = GetCustomerContactInfo();
-                int numberOfTickets = GetNumberOfTickets();
+                Console.WriteLine("Select a movie to book tickets:");
+                List<Movie> movies = _movieManager.GetAllMovies();
+                Console.WriteLine("-------------------------------");
+                for (int i = 0; i < movies.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {movies[i].Title}");
+                }
+                Console.WriteLine("-------------------------------");
+
+                Console.Write("Enter the number corresponding to the movie: ");
+                int movieIndex;
+                if (!int.TryParse(Console.ReadLine(), out movieIndex) || movieIndex < 1 || movieIndex > movies.Count)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    return;
+                }
+
+
+                Movie selectedMovie = movies[movieIndex - 1];
+                Console.WriteLine($"You have selected '{selectedMovie.Title}'.");
+
+                Console.WriteLine("Select a timing for the movie:");
+                Console.WriteLine("-------------------------------");
+                for (int i = 0; i < selectedMovie.ScreeningTimes.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {selectedMovie.ScreeningTimes[i].ToString("HH:mm")}");
+                }
+                Console.WriteLine("-------------------------------");
+
+                Console.Write("Enter the number corresponding to the timing: ");
+                int timingIndex;
+                if (!int.TryParse(Console.ReadLine(), out timingIndex) || timingIndex < 1 || timingIndex > selectedMovie.ScreeningTimes.Count)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number.");
+                    return;
+                }
+                DateTime selectedTiming = selectedMovie.ScreeningTimes[timingIndex - 1];
+
+                Console.Write("Enter your name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter your contact information: ");
+                string contactInfo = Console.ReadLine();
+
+                Console.Write("Enter the number of tickets: ");
+                int numberOfTickets;
+                if (!int.TryParse(Console.ReadLine(), out numberOfTickets) || numberOfTickets <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number of tickets.");
+                    return;
+                }
+
+                // Calculate payment details
                 decimal ticketPrice = selectedMovie.TicketPrice;
                 decimal totalCost = CalculateTotalCost(ticketPrice, numberOfTickets);
                 decimal discount = CalculateDiscount(totalCost);
-                decimal discountedTotalCost = CalculateDiscountedTotalCost(totalCost, discount);
+                decimal discountedTotalCost = totalCost - discount;
 
-                Booking booking = CreateBooking(selectedMovie, selectedTiming, numberOfTickets, name, contactInfo);
+                Booking booking = new Booking(0, selectedMovie.Id, selectedTiming, numberOfTickets, name, contactInfo);
 
-                DisplayBookingConfirmation(booking, selectedMovie, selectedTiming, numberOfTickets, name, contactInfo, ticketPrice, discountedTotalCost);
+                // Add booking to the booking manager
+                _bookingManager.AddBooking(booking);
+
+                Console.WriteLine("-------------------------------");
+                // Display booking confirmation
+                Console.WriteLine("\nBooking Confirmation:");
+                Console.WriteLine($"Booking ID: {booking.Id}");
+                Console.WriteLine($"Movie Title: {selectedMovie.Title}");
+                Console.WriteLine($"Screening Time: {selectedTiming}");
+                Console.WriteLine($"Number of Tickets: {numberOfTickets}");
+                Console.WriteLine($"Customer Name: {name}");
+                Console.WriteLine($"Contact Info: {contactInfo}");
+                Console.WriteLine($"Ticket Price: Rs {ticketPrice}");
+                Console.WriteLine($"Total Cost: Rs {discountedTotalCost} (5% discount applied)");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("\nThank you for booking with us!");
+                Console.WriteLine("Enjoy the movie!\n");
+                Console.WriteLine("-------------------------------");
             }
             catch (Exception ex)
             {
-                DisplayErrorMessage(ex.Message);
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
             }
+
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
 
-        static int GetMovieSelection()
+        static void CancelTickets()
         {
-            List<Movie> movies = _movieManager.GetAllMovies();
-            PrintMovieSelectionOptions(movies);
-            return GetUserInputAsInt(1, movies.Count);
-        }
-
-        static void PrintMovieSelectionOptions(List<Movie> movies)
-        {
-            Console.WriteLine("Select a movie to book tickets:");
-            Console.WriteLine("-------------------------------");
-            for (int i = 0; i < movies.Count; i++)
+            try
             {
-                Console.WriteLine($"{i + 1}. {movies[i].Title}");
+                Console.WriteLine("Enter the booking ID to cancel:");
+                int bookingId;
+                if (!int.TryParse(Console.ReadLine(), out bookingId) || bookingId <= 0)
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine("Invalid input. Please enter a valid booking ID.");
+                    Console.WriteLine("-------------------------------");
+                    return;
+                }
+
+                // Retrieve booking details
+                Booking booking = _bookingManager.GetBookingById(bookingId);
+
+                if (booking != null)
+                {
+                    _bookingManager.RemoveBooking(bookingId);
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine($"Booking with ID {bookingId} has been canceled successfully.");
+                    Console.WriteLine("-------------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine($"Booking with ID {bookingId} not found. Please enter a valid booking ID.");
+                    Console.WriteLine("-------------------------------");
+                }
             }
-            Console.WriteLine("-------------------------------");
-        }
-
-        static Movie GetSelectedMovie(int movieIndex)
-        {
-            List<Movie> movies = _movieManager.GetAllMovies();
-            return movies[movieIndex - 1];
-        }
-
-        static DateTime GetSelectedTiming(Movie selectedMovie)
-        {
-            Console.WriteLine("Select a timing for the movie:");
-            Console.WriteLine("-------------------------------");
-            for (int i = 0; i < selectedMovie.ScreeningTimes.Count; i++)
+            catch (Exception ex)
             {
-                Console.WriteLine($"{i + 1}. {selectedMovie.ScreeningTimes[i].ToString("HH:mm")}");
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
             }
-            Console.WriteLine("-------------------------------");
 
-            int timingIndex = GetUserInputAsInt(1, selectedMovie.ScreeningTimes.Count);
-            return selectedMovie.ScreeningTimes[timingIndex - 1];
-        }
-
-        static string GetCustomerName()
-        {
-            Console.Write("Enter your name: ");
-            return Console.ReadLine();
-        }
-
-        static string GetCustomerContactInfo()
-        {
-            Console.Write("Enter your contact information: ");
-            return Console.ReadLine();
-        }
-
-        static int GetNumberOfTickets()
-        {
-            Console.Write("Enter the number of tickets: ");
-            return GetUserInputAsInt(1, int.MaxValue);
-        }
-
-        static int GetUserInputAsInt(int minValue, int maxValue)
-        {
-            int userInput;
-            while (!int.TryParse(Console.ReadLine(), out userInput) || userInput < minValue || userInput > maxValue)
-            {
-                Console.WriteLine($"Invalid input. Please enter a number between {minValue} and {maxValue}.");
-            }
-            return userInput;
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
 
         static decimal CalculateTotalCost(decimal ticketPrice, int numberOfTickets)
@@ -193,91 +236,149 @@ namespace MovieBookingSystemApp
             return totalCost * 0.05m; // 5% discount
         }
 
-        static decimal CalculateDiscountedTotalCost(decimal totalCost, decimal discount)
-        {
-            return totalCost - discount;
-        }
-
-        static Booking CreateBooking(Movie selectedMovie, DateTime selectedTiming, int numberOfTickets, string name, string contactInfo)
-        {
-            return new Booking(0, selectedMovie.Id, selectedTiming, numberOfTickets, name, contactInfo);
-        }
-
-        static void DisplayBookingConfirmation(Booking booking, Movie selectedMovie, DateTime selectedTiming, int numberOfTickets, string name, string contactInfo, decimal ticketPrice, decimal discountedTotalCost)
-        {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("\nBooking Confirmation:");
-            Console.WriteLine($"Booking ID: {booking.Id}");
-            Console.WriteLine($"Movie Title: {selectedMovie.Title}");
-            Console.WriteLine($"Screening Time: {selectedTiming}");
-            Console.WriteLine($"Number of Tickets: {numberOfTickets}");
-            Console.WriteLine($"Customer Name: {name}");
-            Console.WriteLine($"Contact Info: {contactInfo}");
-            Console.WriteLine($"Ticket Price: Rs {ticketPrice}");
-            Console.WriteLine($"Total Cost: Rs {discountedTotalCost} (5% discount applied)");
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("\nThank you for booking with us!");
-            Console.WriteLine("Enjoy the movie!\n");
-            Console.WriteLine("-------------------------------");
-        }
-
-        static void CancelTickets()
+        static void AddNewMovie()
         {
             try
             {
-                int bookingId = GetBookingIdToCancel();
-                Booking booking = _bookingManager.GetBookingById(bookingId);
-                if (booking != null)
+                Console.WriteLine("Enter details for the new movie:");
+                Console.Write("Title: ");
+                string title = Console.ReadLine();
+
+                Console.Write("Genre: ");
+                string genre = Console.ReadLine();
+
+                Console.Write("Duration (minutes): ");
+                int duration;
+                while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
                 {
-                    _bookingManager.RemoveBooking(bookingId);
-                    DisplayCancellationSuccessMessage(bookingId);
+                    Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
+                    Console.Write("Duration (minutes): ");
                 }
-                else
+
+                Console.Write("Ticket Price: ");
+                decimal ticketPrice;
+                while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
                 {
-                    DisplayBookingNotFoundMessage(bookingId);
+                    Console.WriteLine("Invalid input. Please enter a valid ticket price.");
+                    Console.Write("Ticket Price: ");
                 }
+
+                Movie newMovie = new Movie(0, title, genre, duration,  new List<DateTime>(), ticketPrice);
+                _movieManager.AddMovie(newMovie);
+
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("New movie added successfully!");
+                Console.WriteLine("-------------------------------");
             }
             catch (Exception ex)
             {
-                DisplayErrorMessage(ex.Message);
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
             }
+
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
 
-        static int GetBookingIdToCancel()
+        static void EditMovie()
         {
-            Console.WriteLine("Enter the booking ID to cancel:");
-            return GetUserInputAsInt(1, int.MaxValue);
+            try
+            {
+                Console.WriteLine("Enter the ID of the movie to edit:");
+                int movieId;
+                if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid movie ID.");
+                    return;
+                }
+
+                Movie movieToEdit = _movieManager.GetMovieById(movieId);
+                if (movieToEdit == null)
+                {
+                    Console.WriteLine("Movie not found. Please enter a valid movie ID.");
+                    return;
+                }
+
+                Console.WriteLine("Enter new details for the movie:");
+                Console.Write("Title: ");
+                string title = Console.ReadLine();
+
+                Console.Write("Genre: ");
+                string genre = Console.ReadLine();
+
+                Console.Write("Duration (minutes): ");
+                int duration;
+                while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
+                    Console.Write("Duration (minutes): ");
+                }
+
+                Console.Write("Ticket Price: ");
+                decimal ticketPrice;
+                while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid ticket price.");
+                    Console.Write("Ticket Price: ");
+                }
+
+                movieToEdit.Title = title;
+                movieToEdit.Genre = genre;
+                movieToEdit.DurationMinutes = duration;
+                movieToEdit.TicketPrice = ticketPrice;
+
+                _movieManager.UpdateMovie(movieToEdit);
+
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Movie details updated successfully!");
+                Console.WriteLine("-------------------------------");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
 
-        static void DisplayCancellationSuccessMessage(int bookingId)
+        static void DeleteMovie()
         {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine($"Booking with ID {bookingId} has been canceled successfully.");
-            Console.WriteLine("-------------------------------");
-        }
+            try
+            {
+                Console.WriteLine("Enter the ID of the movie to delete:");
+                int movieId;
+                if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid movie ID.");
+                    return;
+                }
 
-        static void DisplayBookingNotFoundMessage(int bookingId)
-        {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine($"Booking with ID {bookingId} not found. Please enter a valid booking ID.");
-            Console.WriteLine("-------------------------------");
-        }
+                Movie movieToDelete = _movieManager.GetMovieById(movieId);
+                if (movieToDelete == null)
+                {
+                    Console.WriteLine("Movie not found. Please enter a valid movie ID.");
+                    return;
+                }
 
-        static void ExitApplication()
-        {
-            Console.WriteLine("Thank you for using the Movie Booking System. Goodbye!");
-            Environment.Exit(0);
-        }
+                _movieManager.RemoveMovie(movieId);
 
-        static void DisplayInvalidChoiceMessage()
-        {
-            Console.WriteLine("Invalid choice. Please try again.");
-        }
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Movie deleted successfully!");
+                Console.WriteLine("-------------------------------");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("-------------------------------");
+            }
 
-        static void DisplayErrorMessage(string errorMessage)
-        {
-            Console.WriteLine($"Error: {errorMessage}");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
