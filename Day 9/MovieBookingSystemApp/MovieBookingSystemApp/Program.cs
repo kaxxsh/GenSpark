@@ -22,6 +22,7 @@ namespace MovieBookingSystemApp
             DisplayMainMenu();
         }
 
+        // Display main menu options
         static void DisplayMainMenu()
         {
             while (true)
@@ -78,6 +79,7 @@ namespace MovieBookingSystemApp
             }
         }
 
+        // Method to display the list of movies
         static void ViewMovieListing()
         {
             try
@@ -100,6 +102,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to book tickets for a movie
         static void BookTickets()
         {
             try
@@ -120,7 +123,6 @@ namespace MovieBookingSystemApp
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                     return;
                 }
-
 
                 Movie selectedMovie = movies[movieIndex - 1];
                 Console.WriteLine($"You have selected '{selectedMovie.Title}'.");
@@ -194,6 +196,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to cancel tickets
         static void CancelTickets()
         {
             try
@@ -236,17 +239,19 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to calculate total cost
         static decimal CalculateTotalCost(decimal ticketPrice, int numberOfTickets)
         {
             return ticketPrice * numberOfTickets;
         }
 
+        // Method to calculate discount
         static decimal CalculateDiscount(decimal totalCost)
         {
-            return totalCost * 0.05m
-; // 5% discount
+            return totalCost * 0.05m; // 5% discount
         }
 
+        // Method to add a new movie
         static void AddNewMovie()
         {
             try
@@ -292,6 +297,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to edit movie details
         static void EditMovie()
         {
             try
@@ -356,6 +362,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to delete a movie
         static void DeleteMovie()
         {
             try
@@ -392,6 +399,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to provide feedback
         static void ProvideFeedback()
         {
             try
@@ -448,6 +456,7 @@ namespace MovieBookingSystemApp
             Console.ReadKey();
         }
 
+        // Method to view all feedback
         static void ViewAllFeedback()
         {
             try
