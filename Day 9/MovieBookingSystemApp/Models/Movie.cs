@@ -5,15 +5,18 @@ namespace Models
 {
     public class Movie
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Genre { get; set; }
-        public int DurationMinutes { get; set; }
-        public List<DateTime> ScreeningTimes { get; set; } // List of screening times
-        public decimal TicketPrice { get; set; } // Ticket price
+        // Properties
+        public int Id { get; set; } // Unique identifier of the movie
+        public string Title { get; set; } // Title of the movie
+        public string Genre { get; set; } // Genre of the movie
+        public int DurationMinutes { get; set; } // Duration of the movie in minutes
+        public List<DateTime> ScreeningTimes { get; set; } // List of screening times for the movie
+        public decimal TicketPrice { get; set; } // Price of a ticket for the movie
 
+        // Default constructor
         public Movie()
         {
+            // Initialize properties with default values
             Id = 0;
             Title = string.Empty;
             Genre = string.Empty;
@@ -22,8 +25,10 @@ namespace Models
             TicketPrice = 0;
         }
 
+        // Parameterized constructor
         public Movie(int id, string title, string genre, int durationMinutes, List<DateTime> screeningTimes, decimal ticketPrice)
         {
+            // Initialize properties with provided values
             Id = id;
             Title = title;
             Genre = genre;
@@ -32,11 +37,11 @@ namespace Models
             TicketPrice = ticketPrice;
         }
 
+        // Override ToString() method to provide string representation of the movie object
         public override string ToString()
         {
+            // Format movie details including title, genre, duration, screening times, and ticket price
             return $"Title: {Title}\nGenre: {Genre}\nDuration: {DurationMinutes} minutes\nScreening Times: {string.Join(", ", ScreeningTimes.Select(time => time.ToString("HH:mm")))}\nTicket Price: Rs {TicketPrice}";
         }
-
-
     }
 }

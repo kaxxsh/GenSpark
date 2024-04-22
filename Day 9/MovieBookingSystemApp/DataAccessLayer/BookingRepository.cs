@@ -6,10 +6,12 @@ namespace DataAccessLayer
 {
     public class BookingRepository
     {
-        private List<Booking> _bookings;
+        private List<Booking> _bookings; // List to store bookings
 
+        // Constructor
         public BookingRepository()
         {
+            // Initialize the list of bookings
             _bookings = new List<Booking>();
         }
 
@@ -28,7 +30,9 @@ namespace DataAccessLayer
         // Method to remove a booking by its ID
         public void RemoveBooking(int id)
         {
+            // Find the booking to remove by its ID
             Booking bookingToRemove = _bookings.Find(b => b.Id == id);
+            // If the booking exists, remove it from the list
             if (bookingToRemove != null)
             {
                 _bookings.Remove(bookingToRemove);
@@ -38,6 +42,7 @@ namespace DataAccessLayer
         // Method to get a booking by its ID
         public Booking GetBookingById(int id)
         {
+            // Find and return the booking with the specified ID
             return _bookings.Find(b => b.Id == id);
         }
     }
