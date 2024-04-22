@@ -23,6 +23,62 @@ namespace MovieBookingSystemApp
         }
 
         // Display main menu options
+        //static void DisplayMainMenu()
+        //{
+        //    while (true)
+        //    {
+        //        Console.Clear(); // Clear the console screen
+        //        Console.WriteLine("Welcome to the Movie Booking System!");
+        //        Console.WriteLine("1. View Movie Listing");
+        //        Console.WriteLine("2. Book Tickets");
+        //        Console.WriteLine("3. Cancel Tickets");
+        //        Console.WriteLine("4. Add a New Movie");
+        //        Console.WriteLine("5. Edit Movie");
+        //        Console.WriteLine("6. Delete Movie");
+        //        Console.WriteLine("7. Provide Feedback");
+        //        Console.WriteLine("8. View All Feedback");
+        //        Console.WriteLine("9. Exit");
+
+        //        Console.Write("Enter your choice: ");
+        //        string choice = Console.ReadLine();
+
+        //        switch (choice)
+        //        {
+        //            case "1":
+        //                ViewMovieListing();
+        //                break;
+        //            case "2":
+        //                BookTickets();
+        //                break;
+        //            case "3":
+        //                CancelTickets();
+        //                break;
+        //            case "4":
+        //                AddNewMovie();
+        //                break;
+        //            case "5":
+        //                EditMovie();
+        //                break;
+        //            case "6":
+        //                DeleteMovie();
+        //                break;
+        //            case "7":
+        //                ProvideFeedback();
+        //                break;
+        //            case "8":
+        //                ViewAllFeedback();
+        //                break;
+        //            case "9":
+        //                Console.WriteLine("Thank you for using the Movie Booking System. Goodbye!");
+        //                Environment.Exit(0);
+        //                break;
+        //            default:
+        //                Console.WriteLine("Invalid choice. Please try again.");
+        //                break;
+        //        }
+        //    }
+        //}
+
         static void DisplayMainMenu()
         {
             while (true)
@@ -32,12 +88,9 @@ namespace MovieBookingSystemApp
                 Console.WriteLine("1. View Movie Listing");
                 Console.WriteLine("2. Book Tickets");
                 Console.WriteLine("3. Cancel Tickets");
-                Console.WriteLine("4. Add a New Movie");
-                Console.WriteLine("5. Edit Movie");
-                Console.WriteLine("6. Delete Movie");
-                Console.WriteLine("7. Provide Feedback");
-                Console.WriteLine("8. View All Feedback");
-                Console.WriteLine("9. Exit");
+                Console.WriteLine("4. Provide Feedback");
+                Console.WriteLine("5. View All Feedback");
+                Console.WriteLine("6. Exit");
 
                 Console.Write("Enter your choice: ");
                 string choice = Console.ReadLine();
@@ -54,21 +107,12 @@ namespace MovieBookingSystemApp
                         CancelTickets();
                         break;
                     case "4":
-                        AddNewMovie();
-                        break;
-                    case "5":
-                        EditMovie();
-                        break;
-                    case "6":
-                        DeleteMovie();
-                        break;
-                    case "7":
                         ProvideFeedback();
                         break;
-                    case "8":
+                    case "5":
                         ViewAllFeedback();
                         break;
-                    case "9":
+                    case "6":
                         Console.WriteLine("Thank you for using the Movie Booking System. Goodbye!");
                         Environment.Exit(0);
                         break;
@@ -252,152 +296,152 @@ namespace MovieBookingSystemApp
         }
 
         // Method to add a new movie
-        static void AddNewMovie()
-        {
-            try
-            {
-                Console.WriteLine("Enter details for the new movie:");
-                Console.Write("Title: ");
-                string title = Console.ReadLine();
+        //static void AddNewMovie()
+        //{
+        //    try
+        //    {
+        //        Console.WriteLine("Enter details for the new movie:");
+        //        Console.Write("Title: ");
+        //        string title = Console.ReadLine();
 
-                Console.Write("Genre: ");
-                string genre = Console.ReadLine();
+        //        Console.Write("Genre: ");
+        //        string genre = Console.ReadLine();
 
-                Console.Write("Duration (minutes): ");
-                int duration;
-                while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
-                    Console.Write("Duration (minutes): ");
-                }
+        //        Console.Write("Duration (minutes): ");
+        //        int duration;
+        //        while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
+        //            Console.Write("Duration (minutes): ");
+        //        }
 
-                Console.Write("Ticket Price: ");
-                decimal ticketPrice;
-                while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid ticket price.");
-                    Console.Write("Ticket Price: ");
-                }
+        //        Console.Write("Ticket Price: ");
+        //        decimal ticketPrice;
+        //        while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid ticket price.");
+        //            Console.Write("Ticket Price: ");
+        //        }
 
-                Movie newMovie = new Movie(0, title, genre, duration, new List<DateTime>(), ticketPrice);
-                _movieManager.AddMovie(newMovie);
+        //        Movie newMovie = new Movie(0, title, genre, duration, new List<DateTime>(), ticketPrice);
+        //        _movieManager.AddMovie(newMovie);
 
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("New movie added successfully!");
-                Console.WriteLine("-------------------------------");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine($"Error: {ex.Message}");
-                Console.WriteLine("-------------------------------");
-            }
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine("New movie added successfully!");
+        //        Console.WriteLine("-------------------------------");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine($"Error: {ex.Message}");
+        //        Console.WriteLine("-------------------------------");
+        //    }
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-        }
+        //    Console.WriteLine("Press any key to continue...");
+        //    Console.ReadKey();
+        //}
 
-        // Method to edit movie details
-        static void EditMovie()
-        {
-            try
-            {
-                Console.WriteLine("Enter the ID of the movie to edit:");
-                int movieId;
-                if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid movie ID.");
-                    return;
-                }
+        //// Method to edit movie details
+        //static void EditMovie()
+        //{
+        //    try
+        //    {
+        //        Console.WriteLine("Enter the ID of the movie to edit:");
+        //        int movieId;
+        //        if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid movie ID.");
+        //            return;
+        //        }
 
-                Movie movieToEdit = _movieManager.GetMovieById(movieId);
-                if (movieToEdit == null)
-                {
-                    Console.WriteLine("Movie not found. Please enter a valid movie ID.");
-                    return;
-                }
+        //        Movie movieToEdit = _movieManager.GetMovieById(movieId);
+        //        if (movieToEdit == null)
+        //        {
+        //            Console.WriteLine("Movie not found. Please enter a valid movie ID.");
+        //            return;
+        //        }
 
-                Console.WriteLine("Enter new details for the movie:");
-                Console.Write("Title: ");
-                string title = Console.ReadLine();
+        //        Console.WriteLine("Enter new details for the movie:");
+        //        Console.Write("Title: ");
+        //        string title = Console.ReadLine();
 
-                Console.Write("Genre: ");
-                string genre = Console.ReadLine();
+        //        Console.Write("Genre: ");
+        //        string genre = Console.ReadLine();
 
-                Console.Write("Duration (minutes): ");
-                int duration;
-                while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
-                    Console.Write("Duration (minutes): ");
-                }
+        //        Console.Write("Duration (minutes): ");
+        //        int duration;
+        //        while (!int.TryParse(Console.ReadLine(), out duration) || duration <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid duration in minutes.");
+        //            Console.Write("Duration (minutes): ");
+        //        }
 
-                Console.Write("Ticket Price: ");
-                decimal ticketPrice;
-                while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid ticket price.");
-                    Console.Write("Ticket Price: ");
-                }
+        //        Console.Write("Ticket Price: ");
+        //        decimal ticketPrice;
+        //        while (!decimal.TryParse(Console.ReadLine(), out ticketPrice) || ticketPrice <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid ticket price.");
+        //            Console.Write("Ticket Price: ");
+        //        }
 
-                movieToEdit.Title = title;
-                movieToEdit.Genre = genre;
-                movieToEdit.DurationMinutes = duration;
-                movieToEdit.TicketPrice = ticketPrice;
+        //        movieToEdit.Title = title;
+        //        movieToEdit.Genre = genre;
+        //        movieToEdit.DurationMinutes = duration;
+        //        movieToEdit.TicketPrice = ticketPrice;
 
-                _movieManager.UpdateMovie(movieToEdit);
+        //        _movieManager.UpdateMovie(movieToEdit);
 
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("Movie details updated successfully!");
-                Console.WriteLine("-------------------------------");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine($"Error: {ex.Message}");
-                Console.WriteLine("-------------------------------");
-            }
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine("Movie details updated successfully!");
+        //        Console.WriteLine("-------------------------------");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine($"Error: {ex.Message}");
+        //        Console.WriteLine("-------------------------------");
+        //    }
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-        }
+        //    Console.WriteLine("Press any key to continue...");
+        //    Console.ReadKey();
+        //}
 
-        // Method to delete a movie
-        static void DeleteMovie()
-        {
-            try
-            {
-                Console.WriteLine("Enter the ID of the movie to delete:");
-                int movieId;
-                if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
-                {
-                    Console.WriteLine("Invalid input. Please enter a valid movie ID.");
-                    return;
-                }
+        //// Method to delete a movie
+        //static void DeleteMovie()
+        //{
+        //    try
+        //    {
+        //        Console.WriteLine("Enter the ID of the movie to delete:");
+        //        int movieId;
+        //        if (!int.TryParse(Console.ReadLine(), out movieId) || movieId <= 0)
+        //        {
+        //            Console.WriteLine("Invalid input. Please enter a valid movie ID.");
+        //            return;
+        //        }
 
-                Movie movieToDelete = _movieManager.GetMovieById(movieId);
-                if (movieToDelete == null)
-                {
-                    Console.WriteLine("Movie not found. Please enter a valid movie ID.");
-                    return;
-                }
+        //        Movie movieToDelete = _movieManager.GetMovieById(movieId);
+        //        if (movieToDelete == null)
+        //        {
+        //            Console.WriteLine("Movie not found. Please enter a valid movie ID.");
+        //            return;
+        //        }
 
-                _movieManager.RemoveMovie(movieId);
+        //        _movieManager.RemoveMovie(movieId);
 
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("Movie deleted successfully!");
-                Console.WriteLine("-------------------------------");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine($"Error: {ex.Message}");
-                Console.WriteLine("-------------------------------");
-            }
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine("Movie deleted successfully!");
+        //        Console.WriteLine("-------------------------------");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("-------------------------------");
+        //        Console.WriteLine($"Error: {ex.Message}");
+        //        Console.WriteLine("-------------------------------");
+        //    }
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-        }
+        //    Console.WriteLine("Press any key to continue...");
+        //    Console.ReadKey();
+        //}
 
         // Method to provide feedback
         static void ProvideFeedback()
