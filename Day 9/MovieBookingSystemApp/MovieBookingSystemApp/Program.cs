@@ -223,21 +223,8 @@ namespace MovieBookingSystemApp
         // Create booking
         static Booking CreateBooking(Movie selectedMovie, DateTime selectedTiming, int numberOfTickets, string name, string contactInfo)
         {
-            int id = GenerateBookingId(); // Generate a unique booking ID
-            return new Booking(id, selectedMovie.Id, selectedTiming, numberOfTickets, name, contactInfo); // Return new booking instance
+            return new Booking(0, selectedMovie.Id, selectedTiming, numberOfTickets, name, contactInfo); // Return new booking instance
         }
-
-        // Generate a unique booking ID
-        static int GenerateBookingId()
-        {
-            // You can implement your logic for generating a unique ID here
-            // For simplicity, you can use a counter or any other method that ensures uniqueness
-            // In a real-world scenario, you might use a database-generated ID or another mechanism
-            // For this example, let's increment a static variable
-            return ++lastBookingId;
-        }
-
-        static int lastBookingId = 0;
 
         // Display booking confirmation
         static void DisplayBookingConfirmation(Booking booking, Movie selectedMovie, DateTime selectedTiming, int numberOfTickets, string name, string contactInfo, decimal ticketPrice, decimal discountedTotalCost)
@@ -263,24 +250,46 @@ namespace MovieBookingSystemApp
         {
             try
             {
-                Console.Write("Enter the booking ID to cancel: ");
-                int bookingId;
-                if (!int.TryParse(Console.ReadLine(), out bookingId) || bookingId <= 0)
+                int bookingId = GetBookingIdToCancel(); // Get booking ID to cancel
+                Booking booking = _bookingManager.GetBookingById(bookingId); // Get booking by ID
+                if (booking != null)
                 {
-                    Console.WriteLine("Invalid input. Please enter a valid booking ID.");
-                    return;
+                    _bookingManager.RemoveBooking(bookingId); // Remove booking
+                    DisplayCancellationSuccessMessage(bookingId); // Display cancellation success message
                 }
-                // Call the BookingManager to remove the booking
-                _bookingManager.RemoveBooking(bookingId);
-                Console.WriteLine($"Booking with ID {bookingId} has been canceled successfully.");
+                else
+                {
+                    DisplayBookingNotFoundMessage(bookingId); // Display booking not found message
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                DisplayErrorMessage(ex.Message); // Display error message if an exception occurs
             }
+            Console.ReadKey(); // Wait for user input
+        }
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+        // Get booking ID to cancel from user input
+        static int GetBookingIdToCancel()
+        {
+            Console.WriteLine("Enter the booking ID to cancel:");
+            return GetUserInputAsInt(1, int.MaxValue); // Get user input as integer
+        }
+
+        // Display cancellation success message
+        static void DisplayCancellationSuccessMessage(int bookingId)
+        {
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine($"Booking with ID {bookingId} has been canceled successfully.");
+            Console.WriteLine("-------------------------------");
+        }
+
+        // Display booking not found message
+        static void DisplayBookingNotFoundMessage(int bookingId)
+        {
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine($"Booking with ID {bookingId} not found. Please enter a valid booking ID.");
+            Console.WriteLine("-------------------------------");
         }
 
         // Exit the application

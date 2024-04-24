@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34804.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieBookingSystemApp", "MovieBookingSystemApp\MovieBookingSystemApp.csproj", "{C5647F83-4DCE-4560-B568-F4285DD2C9E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieBookingSystemApp", "MovieBookingSystemApp\MovieBookingSystemApp.csproj", "{C5647F83-4DCE-4560-B568-F4285DD2C9E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{0114FBD6-52C5-4C0C-AF10-EFA49C153290}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{0114FBD6-52C5-4C0C-AF10-EFA49C153290}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{75ABA3E4-49D3-4B16-9268-1410D5DAA84A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{75ABA3E4-49D3-4B16-9268-1410D5DAA84A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{ADF778B3-1518-4CCC-B8EB-CC3889F5A277}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{ADF778B3-1518-4CCC-B8EB-CC3889F5A277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

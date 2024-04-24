@@ -16,13 +16,10 @@ namespace RequestTrackerModelLibrary
         public DateTime RaisedDate { get; set; }
         public DateTime ClosedDate { get; set; }
 
-        
         //public bool Equals(Request? other)
         //{
         //    return Id.Equals(other.Id);
         //}
         public bool Equals(Request? other) => Id.Equals(other.Id);
-
-
     }
 }

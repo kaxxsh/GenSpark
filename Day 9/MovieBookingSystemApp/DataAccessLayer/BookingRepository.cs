@@ -24,11 +24,8 @@ namespace DataAccessLayer
         // Method to add a new booking
         public void AddBooking(Booking booking)
         {
-            int id = GenerateId();
-            booking.Id = id; // Assign the generated ID to the booking
             _bookings.Add(booking);
         }
-
 
         // Method to remove a booking by its ID
         public void RemoveBooking(int id)
@@ -48,13 +45,5 @@ namespace DataAccessLayer
             // Find and return the booking with the specified ID
             return _bookings.Find(b => b.Id == id);
         }
-
-        private int _nextId = 1;
-
-        private int GenerateId()
-        {
-            return _nextId++;
-        }
-
     }
 }
