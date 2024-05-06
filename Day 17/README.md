@@ -1,4 +1,4 @@
-# GenSpark Training Day 16 May
+# GenSpark Training Day 17 May
 
 # SQL TASK
 
