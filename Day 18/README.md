@@ -17,7 +17,7 @@ This system allows the shop to keep track of available products, manage customer
 
 ## ERD Diagram 
 
-![shoping]()
+![shoping](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2018/Erd.png)
 
 ## Repository
 
