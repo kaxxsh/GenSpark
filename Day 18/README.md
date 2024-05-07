@@ -19,6 +19,8 @@ This system allows the shop to keep track of available products, manage customer
 
 ![shoping](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2018/Erd.png)
 
+![movie](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2018/movie.png)
+
 ## Repository
 
 The repository for this project can be found [here](https://github.com/gayat19/FSD09Apr2024).
