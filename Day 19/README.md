@@ -26,11 +26,13 @@ CREATE PROCEDURE proc_GetTitlesSoldByEmployeeALT
     @Name VARCHAR(20)
 AS
 BEGIN
-    SELECT t.title, s.qty, t.price, s.qty * t.price AS cost
-    FROM sales s
-    INNER JOIN titles t ON s.title_id = t.title_id
-    INNER JOIN employee e ON t.pub_id = e.pub_id
-    WHERE e.fname LIKE '%' + @Name + '%' OR e.lname LIKE '%' + @Name + '%';
+   SELECT t.title AS 'Book Title', sum(t.price) AS 'Price', sum(s.qty) AS 'Quantity', sum(t.price) * sum(s.qty) AS 'Total Cost' 
+   FROM Employee e
+   JOIN titles t ON t.pub_id = e.pub_id
+   JOIN Sales s ON t.title_id = s.title_id
+   WHERE e.fname = @employee_fname
+   GROUP BY t.title
+   ORDER BY [Total Cost] DESC
 END
 ```
 
