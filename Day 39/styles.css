@@ -1,0 +1,135 @@
+body {
+    background-color: #f4f4f5;
+    color: #374151;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.profile, .main-content {
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.profile {
+    background-color: #e4e4e7;
+    width: 100%;
+    max-width: 320px;
+    flex: 1;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture {
+    background-color: #3b82f6;
+    border-radius: 50%;
+    width: 128px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.profile-text, .contact-info {
+    font-size: 14px;
+    color: #1f2937;
+    margin-bottom: 16px;
+}
+
+.contact-info a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.hobbies-list {
+    font-size: 14px;
+    color: #1f2937;
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.hobbies-list a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.main-content {
+    background-color: #ffffff;
+    flex: 2;
+}
+
+.name-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.student-title {
+    font-size: 24px;
+    color: #4b5563;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1f2937;
+}
+
+.education-item, .project-item, .skill-item {
+    margin-bottom: 16px;
+}
+
+.institution-title, .project-title, .skill-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #111827;
+}
+
+.education-date, .project-date, .project-description, .skill-bar {
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.project-link {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.skill-bar {
+    width: 100%;
+    background-color: #e5e7eb;
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.skill-level {
+    background-color: #3b82f6;
+    height: 100%;
+    border-radius: 4px;
+}
