@@ -1,4 +1,4 @@
-# GenSpark Training Day 27 May
+# GenSpark Training Day 28 May
 
 ## Topics Covered
 
