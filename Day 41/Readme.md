@@ -21,7 +21,7 @@ This directory contains a data table interface.
   - `filter.webp`: An image used for filtering options in the data table.
   - `output.png`: An image showing the output of the data table.
 
-![Data Table]()
+![Data Table](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2041/Table.png)
 
 ### Gmail
 
@@ -38,7 +38,7 @@ This directory simulates a Gmail interface for both Android and iPhone.
   - `Output.png`: An additional output image for the Gmail interface.
 
 
-![Gmail]()
+![Gmail](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2041/Email.png)
 
 ### Login
 
@@ -54,7 +54,7 @@ This directory contains a login page interface.
   - `lock.png`: Lock icon used in the login page.
   - `user.png`: User icon used in the login page.
 
-![Login]()
+![Login](https://github.com/kaxxsh/GenSpark/blob/main/Results/Day%2041/Login.png)
 
 ## Usage
 
