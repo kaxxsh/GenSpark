@@ -28,8 +28,8 @@ The Frontend of the Railway Reservation System provides a user-friendly interfac
 1. **Clone the Repository**
 
    ```sh
-   git clone 
-   cd 
+   git clone
+   cd
    ```
 
 2. **Install Dependencies**
@@ -122,11 +122,12 @@ The Frontend of the Railway Reservation System provides a user-friendly interfac
 
 ![Admin Panel - Train Management](/Results//Day%2043/Admin%20pannel%20-%20Train.jpg)
 
-
 ## Refer the Figma For Design
 
 - Figma Design [Figma](https://www.figma.com/design/7NBWnzgNAiH76oXtisReQM/Railway-Reservation-System?m=dev&node-id=0-1&t=uQrywYYUg9o9up4j-1)
 
 - Figma Prototype [Prototype](https://www.figma.com/proto/7NBWnzgNAiH76oXtisReQM/Railway-Reservation-System?page-id=0%3A1&node-id=1-2&viewport=247%2C623%2C0.18&t=hNW3JHEfB1ZUzxXA-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2)
 
+## Morning Session Output
 
+![Table](../Results/Day%2046/Table.png)
