@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Document</title>
-    <link rel="stylesheet" href="../scss/nav/main.css" />
+    <link rel="stylesheet" href="../scss/main/main.css" />
   </head>
   <body>
     <nav>
@@ -19,7 +19,12 @@
         </div>
         <div class="auth">
           <img src="../Asserts/Nav/user.svg" alt="User" />
-          <div class="title">Register / Login</div>
+          <div
+            class="title"
+            onclick="window.location.href = 'registration.html'"
+          >
+            Register / Login
+          </div>
         </div>
       </div>
     </nav>
@@ -40,13 +45,15 @@
                 <div class="title">Departure Date</div>
                 <input type="date" />
               </div>
-              <div class="tomorrow">
-                <div class="title">Tomorrow</div>
-                <div class="description">Tatkal Open</div>
-              </div>
-              <div class="After">
-                <div class="title">Day After</div>
-                <div class="description">Tatkal Open</div>
+              <div class="otherdates">
+                <div class="tomorrow">
+                  <div class="title">Tomorrow</div>
+                  <div class="description">Tatkal Open</div>
+                </div>
+                <div class="after">
+                  <div class="title">Day After</div>
+                  <div class="description">Tatkal Open</div>
+                </div>
               </div>
               <div class="button">
                 <div class="btn">Search ></div>
