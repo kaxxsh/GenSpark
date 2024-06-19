@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../scss/main/nav/nav.css" />
+    <link rel="stylesheet" href="../scss/trains/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="../Asserts/Nav/logo.svg" alt="Company Logo" />
+        <div class="title">Train</div>
+      </div>
+      <div class="menu">
+        <div class="customer">
+          <img src="../Asserts/Nav/customer.svg" alt="Customer Service" />
+          <div class="title">Customer Service</div>
+        </div>
+        <div class="tickets">
+          <img src="../Asserts/Nav/tickets.svg" alt="Tickets" />
+          <div class="title">My Tickets</div>
+        </div>
+        <div class="auth">
+          <img src="../Asserts/Nav/user.svg" alt="User" />
+          <div
+            class="title"
+            onclick="window.location.href = 'registration.html'"
+          >
+            Logout
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="search">
+        <div class="from">
+          <label for="from">From</label>
+          <input type="text" id="from" />
+        </div>
+        <div class="to">
+          <label for="to">To</label>
+          <input type="text" id="to" />
+        </div>
+        <div class="date">
+          <label for="date">Date</label>
+          <input type="date" id="date" />
+        </div>
+        <button>Search</button>
+      </div>
+      </div>
+    </main>
+  </body>
+</html>
