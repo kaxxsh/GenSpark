@@ -41,15 +41,9 @@
     <main>
       <div class="search">
         <div class="container">
-          <div class="relative h-11 min-w-[100px]">
-            <input
-              class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
-            />
-            <label
-              class="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
-            >
-              From
-            </label>
+          <div class="input-field">
+            <label for="from">From</label>
+            <input type="text" id="from" />
           </div>
 
           <div class="swipe">
@@ -66,21 +60,82 @@
               />
             </svg>
           </div>
-            <div class="relative h-11 min-w-[100px]">
-            <input
-              class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
-            />
-            <label
-              class="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
-            >
-              To
-            </label>
+          <div class="input-field">
+            <label for="To">To</label>
+            <input type="text" id="To" />
           </div>
           <div class="date">
             <label for="date">Date</label>
             <input type="date" id="date" />
           </div>
           <button>Search</button>
+        </div>
+      </div>
+      <div class="train">
+        <div class="container">
+          <div class="top">
+            <div class="details">
+              <div class="Train-details">
+                <div class="number">12345</div>
+                <div class="name">Yelagiri</div>
+                <div class="type">Ex</div>
+              </div>
+              <div class="train-other-details">
+                <div class="runs-on">Runs on : S M T W T F S</div>
+                <div class="dot"></div>
+                <div class="train-type">Train Type</div>
+              </div>
+            </div>
+            <div class="timing-details">
+              <div class="from">
+                <div class="station-code">VN</div>
+                <div class="time">05:17</div>
+              </div>
+              <div class="duration">
+                <div class="time">4h 00m</div>
+                <svg
+                  width="131"
+                  height="6"
+                  viewBox="0 0 131 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="130"
+                    height="2"
+                    transform="translate(0.140015 2)"
+                    fill="black"
+                  />
+                  <rect
+                    x="0.140015"
+                    width="6"
+                    height="6"
+                    rx="3"
+                    fill="#757575"
+                  />
+                  <rect x="124.14" width="6" height="6" rx="3" fill="#757575" />
+                </svg>
+              </div>
+              <div class="to">
+                <div class="station-code">NDLS</div>
+                <div class="time">09:17</div>
+              </div>
+            </div>
+            <button>Book Ticket</button>
+          </div>
+          <div class="bottom">
+            <div class="seat-available">
+              <div class="card-top">
+                <div class="seat-type">G</div>
+                <div class="dot"></div>
+                <div class="price">Rs 100</div>
+              </div>
+              <div class="card-bottom">
+                <div class="available">AVL</div>
+                <div class="total">100</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
