@@ -1,7 +1,8 @@
 main {
   display: flex;
   .menu {
-    position: fixed;
+    position: sticky;
+    top: 10vh;
     left: 0;
     width: 18vw;
     background-color: #f0f0f0;
@@ -9,7 +10,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
+    margin: 0;
+    border: none;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
     .list {
@@ -45,7 +48,6 @@ main {
 
   .main {
     width: 82vw;
-    margin-left: 18vw;
     .list {
       height: 10vh;
       width: 100%;
@@ -108,6 +110,31 @@ main {
           display: flex;
           justify-content: center;
         }
+        .table-title-train:nth-child(1) {
+          width: 8vw;
+          display: flex;
+          justify-content: center;
+        }
+        .table-title-train:nth-child(2) {
+          width: 12vw;
+          display: flex;
+          justify-content: center;
+        }
+        .table-title-train:nth-child(3) {
+          width: 14vw;
+          display: flex;
+          justify-content: center;
+        }
+        .table-title-train:nth-child(4) {
+          width: 14vw;
+          display: flex;
+          justify-content: center;
+        }
+        .table-title-train:nth-child(5) {
+          width: 14vw;
+          display: flex;
+          justify-content: center;
+        }
       }
       .table-data {
         .card {
@@ -135,6 +162,31 @@ main {
             }
             .table-data:nth-child(4) {
               width: 18vw;
+              display: flex;
+              justify-content: center;
+            }
+            .table-data-train:nth-child(1) {
+              width: 8vw;
+              display: flex;
+              justify-content: center;
+            }
+            .table-data-train:nth-child(2) {
+              width: 12vw;
+              display: flex;
+              justify-content: center;
+            }
+            .table-data-train:nth-child(3) {
+              width: 14vw;
+              display: flex;
+              justify-content: center;
+            }
+            .table-data-train:nth-child(4) {
+              width: 14vw;
+              display: flex;
+              justify-content: center;
+            }
+            .table-data-train:nth-child(5) {
+              width: 14vw;
               display: flex;
               justify-content: center;
             }
