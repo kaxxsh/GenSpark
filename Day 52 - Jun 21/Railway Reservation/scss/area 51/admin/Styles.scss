@@ -203,3 +203,48 @@ main {
     }
   }
 }
+
+main {
+  display: flex;
+  // Base styles for .menu and .main are defined above
+
+  @media (max-width: 1024px) { // Medium screens (tablets)
+    flex-direction: column;
+
+    .menu, .main {
+      width: 100%;
+      .list, .add, .table-heading, .table-data {
+        width: auto;
+        flex-direction: column;
+      }
+    }
+  }
+
+  @media (max-width: 768px) { // Small screens (mobile devices)
+    .menu {
+      position: fixed;
+      bottom: 0;
+      height: auto;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      .list {
+        flex-direction: column;
+        margin: 5px 0;
+      }
+    }
+
+    .main {
+      padding-top: 60px; // Adjust based on .menu height
+      .list, .add {
+        flex-direction: column;
+      }
+    }
+
+    .table {
+      .table-heading, .table-data {
+        flex-direction: column;
+      }
+    }
+  }
+}
