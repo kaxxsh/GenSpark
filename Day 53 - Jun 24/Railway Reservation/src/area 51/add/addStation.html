@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Station Registration Form</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("stationForm");
+        const fields = ["stationName", "stationCode", "stationType", "pincode"];
+        const feedback = {};
+
+        fields.forEach((field) => {
+          feedback[field] = document.getElementById(`${field}-feedback`);
+        });
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          let valid = true;
+
+          // Get form values
+          const stationName = document.getElementById("stationName").value;
+          const stationCode = document.getElementById("stationCode").value;
+          const stationType = document.getElementById("stationType").value;
+          const pincode = document.getElementById("pincode").value;
+
+          // Reset feedback
+          fields.forEach((field) => {
+            feedback[field].textContent = "";
+            feedback[field].classList.add("hidden");
+          });
+
+          // Client-side validation
+          if (!stationName) {
+            feedback["stationName"].textContent = "Station name is required";
+            feedback["stationName"].classList.remove("hidden");
+            valid = false;
+          }
+
+          if (!stationCode) {
+            feedback["stationCode"].textContent = "Station code is required";
+            feedback["stationCode"].classList.remove("hidden");
+            valid = false;
+          }
+
+          if (!stationType) {
+            feedback["stationType"].textContent = "Station type is required";
+            feedback["stationType"].classList.remove("hidden");
+            valid = false;
+          }
+
+          if (!pincode || !/^\d{6}$/.test(pincode)) {
+            feedback["pincode"].textContent =
+              "Valid pincode is required (6 digits)";
+            feedback["pincode"].classList.remove("hidden");
+            valid = false;
+          }
+
+          if (!valid) return;
+
+          // Prepare data for submission
+          const formData = {
+            stationName,
+            stationCode,
+            stationType() {
+              return parseInt(stationType);
+            },
+            pincode,
+          };
+
+          // Post data to server
+          try {
+            console.log(formData);
+            const response = await fetch(
+              "https://localhost:7139/api/Admin/Station",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+              }
+            );
+
+            if (response.ok) {
+              alert("Station registered successfully!");
+              form.reset();
+            } else {
+              const errorData = await response.json();
+              alert(`Error: ${errorData.message}`);
+            }
+          } catch (error) {
+            alert(`Error: ${error.message}`);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Register Station</h2>
+      <form id="stationForm" class="space-y-6">
+        <div>
+          <label for="stationName" class="block text-gray-700"
+            >Station Name</label
+          >
+          <input
+            type="text"
+            id="stationName"
+            name="stationName"
+            class="w-full p-2 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+          <p
+            id="stationName-feedback"
+            class="text-red-500 text-sm mt-1 hidden"
+          ></p>
+        </div>
+        <div>
+          <label for="stationCode" class="block text-gray-700"
+            >Station Code</label
+          >
+          <input
+            type="text"
+            id="stationCode"
+            name="stationCode"
+            class="w-full p-2 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+          <p
+            id="stationCode-feedback"
+            class="text-red-500 text-sm mt-1 hidden"
+          ></p>
+        </div>
+        <div>
+          <label for="stationType" class="block text-gray-700"
+            >Station Type</label
+          >
+          <select
+            id="stationType"
+            name="stationType"
+            class="w-full p-2 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-indigo-500"
+            required
+          >
+            <option value="" disabled selected>Select station type</option>
+            <option value="0">Junction</option>
+            <option value="1">Terminal</option>
+            <option value="2">Substation</option>
+          </select>
+          <p
+            id="stationType-feedback"
+            class="text-red-500 text-sm mt-1 hidden"
+          ></p>
+        </div>
+        <div>
+          <label for="pincode" class="block text-gray-700">Pincode</label>
+          <input
+            type="text"
+            id="pincode"
+            name="pincode"
+            class="w-full p-2 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+          <p id="pincode-feedback" class="text-red-500 text-sm mt-1 hidden"></p>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          Register Station
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

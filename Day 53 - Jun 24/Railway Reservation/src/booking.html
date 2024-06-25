@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../scss/main/nav/css/nav.css" />
+    <link rel="stylesheet" href="../scss/global/css/Styles.css" />
+    <link rel="stylesheet" href="../scss/booking/css/Styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="../Asserts/Nav/logo.svg" alt="Company Logo" />
+        <div class="title">Train</div>
+      </div>
+      <div class="menu">
+        <div class="customer">
+          <img src="../Asserts/Nav/customer.svg" alt="Customer Service" />
+          <div class="title">Customer Service</div>
+        </div>
+        <div class="tickets">
+          <img src="../Asserts/Nav/tickets.svg" alt="Tickets" />
+          <div class="title">My Tickets</div>
+        </div>
+        <div class="auth">
+          <img src="../Asserts/Nav/user.svg" alt="User" />
+          <div
+            class="title"
+            onclick="window.location.href = 'registration.html'"
+          >
+            Logout
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="menu">
+        <div class="title">Booking Details</div>
+        <div class="details">
+          <div class="from">VN -></div>
+          <div class="to">MAS</div>
+          <div class="date">Fri, 28Jun</div>
+        </div>
+      </div>
+      <div class="booking-details">
+        <div class="booking-container">
+          <div class="train-details">
+            <div class="title">BOOKING DETAILS</div>
+            <div class="card">
+              <div class="train-type">
+                <div class="type">CC General Quota</div>
+                <div class="available-seats">AVL 43</div>
+              </div>
+              <div class="train-timing">
+                <div class="train-details">
+                  <div class="date">Fri, 28 Jun</div>
+                  <div class="number">12345</div>
+                  <div class="name">Yelagiri</div>
+                </div>
+                <div class="timing-details">
+                  <div class="from">
+                    <div class="station-timing">05:17</div>
+                    <div class="station-name">vaniyambadi</div>
+                  </div>
+                  <div class="duration">
+                    <div class="duration-time">1h 30m</div>
+                    <div class="duration-line"></div>
+                  </div>
+                  <div class="to">
+                    <div class="station-timing">06:47</div>
+                    <div class="station-name">Jolarpettai</div>
+                  </div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="boarding-details">
+                <div class="title">Boarding Station</div>
+                <div class="station-details">
+                  <div class="station-name">Vaniyambadi -</div>
+                  <div class="station-code">VN</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Passenger-details">
+          <div class="title">PASSENGER DETAILS</div>
+          <div class="passenger-card">
+            <div class="passenger-detail">
+              <div class="name">Name: kameshwaran</div>
+              <div class="age">Age: 21</div>
+            </div>
+            <div class="other-options">
+              <div class="edit">
+                <img src="../Asserts/Nav/edit.svg" alt="" />
+              </div>
+              <div class="delete">
+                <img src="../Asserts/Nav/delete.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="add-passengers">
+            <div class="title">ADD PASSENGER</div>
+            <form action="">
+              <div class="input">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" />
+              </div>
+              <div class="input">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" />
+              </div>
+              <div class="input">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="description">
+                Note: As per the latest government rules, it is mandatory to
+                share your address.
+              </div>
+              <button>ADD</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="payment">
+        <button>PAY</button>
+      </div>
+    </main>
+  </body>
+</html>
