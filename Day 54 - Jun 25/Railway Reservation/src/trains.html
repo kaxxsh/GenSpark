@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../scss/main/nav/css/nav.css" />
+    <link rel="stylesheet" href="../scss/trains/css/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="../Asserts/Nav/logo.svg" alt="Company Logo" />
+        <div class="title">Train</div>
+      </div>
+      <div class="menu">
+        <div class="customer">
+          <img src="../Asserts/Nav/customer.svg" alt="Customer Service" />
+          <div class="title">Customer Service</div>
+        </div>
+        <div class="tickets">
+          <img src="../Asserts/Nav/tickets.svg" alt="Tickets" />
+          <div class="title">My Tickets</div>
+        </div>
+        <div class="auth">
+          <img src="../Asserts/Nav/user.svg" alt="User" />
+          <div
+            class="title"
+            onclick="window.location.href = 'registration.html'"
+          >
+            Logout
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="search">
+        <div class="container">
+          <div class="input-field">
+            <label for="from">From</label>
+            <input type="text" id="from" />
+          </div>
+
+          <div class="swipe">
+            <svg
+              width="22"
+              height="23"
+              viewBox="0 0 22 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.03916 18.8328C4.03916 18.8328 4.51603 19.3097 5.46976 20.2634C6.4235 21.2171 8.26692 21.694 11 21.694C13.7331 21.694 16.0534 20.7403 17.9609 18.8328C19.8683 16.9253 20.8221 14.605 20.8221 11.8719C20.8221 9.13884 19.8683 6.81856 17.9609 4.91108C16.0534 3.00361 13.7331 2.04987 11 2.04987C8.26692 2.04987 5.94663 3.00361 4.03916 4.91108C2.13168 6.81856 1.17795 9.13884 1.17795 11.8719C1.17795 14.605 2.13168 16.9253 4.03916 18.8328ZM18.7295 19.6015C18.7295 19.6015 18.1957 20.1353 17.1281 21.2029C16.0605 22.2705 14.0178 22.8043 11 22.8043C7.98222 22.8043 5.40571 21.7367 3.27047 19.6015C1.13524 17.4662 0.067627 14.8897 0.067627 11.8719C0.067627 8.85414 1.13524 6.27763 3.27047 4.1424C5.40571 2.00717 7.98222 0.939552 11 0.939552C14.0178 0.939552 16.5943 2.00717 18.7295 4.1424C20.8648 6.27763 21.9324 8.85414 21.9324 11.8719C21.9324 14.8897 20.8648 17.4662 18.7295 19.6015ZM6.85766 8.7972H16.4662V9.48048H6.85766L8.69396 11.4449L8.26692 11.8719L5.53382 9.13884L8.26692 6.40574L8.69396 6.83279L6.85766 8.7972ZM13.7331 11.8719L16.4662 14.605L13.7331 17.3381L13.3061 16.9111L15.1424 14.9467H5.53382V14.2634H15.1424L13.3061 12.299L13.7331 11.8719Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div class="input-field">
+            <label for="To">To</label>
+            <input type="text" id="To" />
+          </div>
+          <div class="date">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+          </div>
+          <button>Search</button>
+        </div>
+      </div>
+      <div class="train">
+        <div class="container">
+          <div class="top">
+            <div class="details">
+              <div class="Train-details">
+                <div class="number">12345</div>
+                <div class="name">Yelagiri</div>
+                <div class="type">Ex</div>
+              </div>
+              <div class="train-other-details">
+                <div class="runs-on">Runs on : S M T W T F S</div>
+                <div class="dot"></div>
+                <div class="train-type">Train Type</div>
+              </div>
+            </div>
+            <div class="timing-details">
+              <div class="from">
+                <div class="station-code">VN</div>
+                <div class="time">05:17</div>
+              </div>
+              <div class="duration">
+                <div class="time">4h 00m</div>
+                <svg
+                  width="131"
+                  height="6"
+                  viewBox="0 0 131 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="130"
+                    height="2"
+                    transform="translate(0.140015 2)"
+                    fill="black"
+                  />
+                  <rect
+                    x="0.140015"
+                    width="6"
+                    height="6"
+                    rx="3"
+                    fill="#757575"
+                  />
+                  <rect x="124.14" width="6" height="6" rx="3" fill="#757575" />
+                </svg>
+              </div>
+              <div class="to">
+                <div class="station-code">NDLS</div>
+                <div class="time">09:17</div>
+              </div>
+            </div>
+            <button>Book Ticket</button>
+          </div>
+          <div class="bottom">
+            <div class="seat-available">
+              <div class="card-top">
+                <div class="seat-type">G</div>
+                <div class="dot"></div>
+                <div class="price">Rs 100</div>
+              </div>
+              <div class="card-bottom">
+                <div class="available">AVL</div>
+                <div class="total">100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
