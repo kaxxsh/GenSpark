@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Train Search</title>
     <link rel="stylesheet" href="../scss/main/nav/css/nav.css" />
     <link rel="stylesheet" href="../scss/trains/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
   </head>
   <body>
     <nav>
@@ -56,83 +60,184 @@
             </svg>
           </div>
           <div class="input-field">
-            <label for="To">To</label>
-            <input type="text" id="To" />
+            <label for="to">To</label>
+            <input type="text" id="to" />
           </div>
           <div class="date">
             <label for="date">Date</label>
-            <input type="date" id="date" />
+            <input type="date" id="departureDate" />
           </div>
-          <button>Search</button>
+          <button id="searchButton">Search</button>
         </div>
       </div>
-      <div class="train">
-        <div class="container">
-          <div class="top">
-            <div class="details">
-              <div class="Train-details">
-                <div class="number">12345</div>
-                <div class="name">Yelagiri</div>
-                <div class="type">Ex</div>
-              </div>
-              <div class="train-other-details">
-                <div class="runs-on">Runs on : S M T W T F S</div>
-                <div class="dot"></div>
-                <div class="train-type">Train Type</div>
-              </div>
-            </div>
-            <div class="timing-details">
-              <div class="from">
-                <div class="station-code">VN</div>
-                <div class="time">05:17</div>
-              </div>
-              <div class="duration">
-                <div class="time">4h 00m</div>
-                <svg
-                  width="131"
-                  height="6"
-                  viewBox="0 0 131 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    width="130"
-                    height="2"
-                    transform="translate(0.140015 2)"
-                    fill="black"
-                  />
-                  <rect
-                    x="0.140015"
-                    width="6"
-                    height="6"
-                    rx="3"
-                    fill="#757575"
-                  />
-                  <rect x="124.14" width="6" height="6" rx="3" fill="#757575" />
-                </svg>
-              </div>
-              <div class="to">
-                <div class="station-code">NDLS</div>
-                <div class="time">09:17</div>
-              </div>
-            </div>
-            <button>Book Ticket</button>
-          </div>
-          <div class="bottom">
-            <div class="seat-available">
-              <div class="card-top">
-                <div class="seat-type">G</div>
-                <div class="dot"></div>
-                <div class="price">Rs 100</div>
-              </div>
-              <div class="card-bottom">
-                <div class="available">AVL</div>
-                <div class="total">100</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="train" class="train"></div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+      let stations = [];
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
+        var yyyy = today.getFullYear();
+        today = yyyy + "-" + mm + "-" + dd;
+        document.getElementById("departureDate").setAttribute("min", today);
+
+        axios
+          .get(`${URLS.base}/api/User/Station`)
+          .then((res) => {
+            stations = res.data;
+            $("#from").autocomplete({
+              source: stations.map((station) => station.stationName),
+            });
+            $("#to").autocomplete({
+              source: stations.map((station) => station.stationName),
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        // Assume you have a function to get URL parameters
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+
+        // Function to find stationId by stationName
+        function getStationIdByName(stationName) {
+          const station = stations.find((s) => s.stationName === stationName);
+          return station ? station.stationId : null;
+        }
+
+        const fromStationName = getQueryParam("from");
+        const toStationName = getQueryParam("to");
+        const date = getQueryParam("date");
+
+        const fromStationId = getStationIdByName(fromStationName);
+        const toStationId = getStationIdByName(toStationName);
+
+        document
+          .getElementById("searchButton")
+          .addEventListener("click", function () {
+            const fromStation = document.getElementById("from").value;
+            const toStation = document.getElementById("to").value;
+            const departureDate =
+              document.getElementById("departureDate").value;
+            const queryParams = new URLSearchParams({
+              from: fromStation,
+              to: toStation,
+              date: departureDate,
+            }).toString();
+            window.location.href = `trains.html?${queryParams}`;
+          });
+
+        axios
+          .get(`${URLS.base}/api/Admin/Train`)
+          .then((res) => {
+            console.log(res.data);
+            const container = document.getElementById("train");
+            const filteredTrains = res.data.filter((train) => {
+              const sourceMatch = train.trainRoute.source === fromStationId;
+              const destinationMatch =
+                train.trainRoute.destination === toStationId;
+              return sourceMatch && destinationMatch;
+            });
+            res.data.forEach((train) => {
+              const trainHtml = `
+                <div class="container">
+                  <div class="top">
+                    <div class="details">
+                      <div class="Train-details">
+                        <div class="number">${train.trainNumber}</div>
+                        <div class="name">${train.trainName}</div>
+                        <div class="type">${getTrainTypeString(
+                          train.trainType
+                        )}</div>
+                      </div>
+                      <div class="train-other-details">
+                        <div class="runs-on">Runs on</div>
+                        <div class="dot"></div>
+                        <div class="train-type">S M T W TH F S</div>
+                      </div>
+                    </div>
+                    <div class="timing-details">
+                      <div class="from">
+                        <div class="station-code">${getStationNameById(
+                          train.trainRoute.source
+                        )}</div>
+                        <div class="time">FROM</div>
+                      </div>
+                      <div class="duration">
+                        <div class="time">${train.trainRoute.duration}m</div>
+                        <svg width="131" height="6" viewBox="0 0 131 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="130" height="2" transform="translate(0.140015 2)" fill="black" />
+                          <rect x="0.140015" width="6" height="6" rx="3" fill="#757575" />
+                          <rect x="124.14" width="6" height="6" rx="3" fill="#757575" />
+                        </svg>
+                      </div>
+                      <div class="to">
+                        <div class="station-code">${getStationNameById(
+                          train.trainRoute.destination
+                        )}</div>
+                        <div class="time">TO</div>
+                      </div>
+                    </div>
+                    <button onclick="bookTicket('${
+                      train.trainId
+                    }')">Book Ticket</button>
+                  </div>
+                  <div class="bottom">
+                    <div class="seat-available">
+                      <div class="card-top">
+                        <div class="seat-type">G</div>
+                        <div class="dot"></div>
+                        <div class="price">${train.fare}</div>
+                      </div>
+                      <div class="card-bottom">
+                        <div class="available">AVL</div>
+                        <div class="total">${train.availableSeats}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += trainHtml;
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+
+      function getStationNameById(stationId) {
+        const station = stations.find(
+          (station) => station.stationId === stationId
+        );
+        return station ? station.stationName : "Unknown";
+      }
+
+      function getTrainTypeString(trainType) {
+        switch (trainType) {
+          case 0:
+            return "Passenger";
+          case 1:
+            return "Express";
+          case 2:
+            return "SuperFast";
+          default:
+            return "Unknown";
+        }
+      }
+
+      function bookTicket(trainId) {
+        console.log(trainId);
+        window.location.href = `./booking.html?trainId=${trainId}`;
+      }
+    </script>
   </body>
 </html>

@@ -6,6 +6,12 @@
     <title>Main Document</title>
     <link rel="stylesheet" href="../scss/main/css/main.css" />
     <link rel="stylesheet" href="../scss/main/nav/css/nav.css " />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   </head>
   <body>
     <nav>
@@ -40,15 +46,15 @@
             <div class="Top">
               <div class="From">
                 <img src="../Asserts/main/Search/From.svg" alt="From Station" />
-                <input type="text" placeholder="From Station" />
+                <input type="text" id="from" placeholder="From Station" />
               </div>
               <div class="To">
                 <img src="../Asserts/main/Search/To.svg" alt="To Station" />
-                <input type="text" placeholder="To Station" />
+                <input type="text" id="to" placeholder="To Station" />
               </div>
               <div class="Date">
                 <div class="title">Departure Date</div>
-                <input type="date" />
+                <input type="date" id="departureDate" />
               </div>
               <div class="otherdates">
                 <div class="tomorrow">
@@ -61,20 +67,20 @@
                 </div>
               </div>
               <div class="button">
-                <div class="btn">Search ></div>
+                <div class="btn" id="searchButton">Search ></div>
               </div>
             </div>
             <div class="Bottom">
-              <img src="../Asserts/Search/img1.svg" alt="" />
+              <img src="../Asserts/main/Search/img1.svg" alt="" />
               <div class="title">₹0 cancellation fee</div>
               <div class="dot">.</div>
-              <img src="../Asserts/Search/img2.svg" alt="" />
+              <img src="../Asserts/main/Search/img2.svg" alt="" />
               <div class="title">Instant full train fare refunds</div>
               <div class="dot">.</div>
-              <img src="../Asserts/Search/img3.svg" alt="" />
+              <img src="../Asserts/main/Search/img3.svg" alt="" />
               <div class="title">24*7 premium customer support</div>
               <div class="dot">.</div>
-              <img src="../Asserts/Search/img4.svg" alt="" />
+              <img src="../Asserts/main/Search/img4.svg" alt="" />
               <div class="title">No documentation required</div>
             </div>
           </div>
@@ -362,8 +368,49 @@
         </div>
       </footer>
     </main>
-    <script></script>
     <script src="../js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
+        var yyyy = today.getFullYear();
+
+        today = yyyy + "-" + mm + "-" + dd;
+        document.getElementById("departureDate").setAttribute("min", today);
+      });
+      let station = [];
+      axios.get(`${URLS.base}/api/User/Station`).then((res) => {
+        res.data.forEach((element) => {
+          station.push(element.stationName);
+        });
+      });
+      console.log(station);
+      $("#from").autocomplete({
+        source: station,
+      });
+      $("#to").autocomplete({
+        source: station,
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("searchButton")
+          .addEventListener("click", function () {
+            const fromStation = document.getElementById("from").value;
+            const toStation = document.getElementById("to").value;
+            const departureDate =
+              document.getElementById("departureDate").value;
+            const queryParams = new URLSearchParams({
+              from: fromStation,
+              to: toStation,
+              date: departureDate,
+            }).toString();
+
+            window.location.href = `trains.html?${queryParams}`;
+          });
+      });
+    </script>
   </body>
 </html>

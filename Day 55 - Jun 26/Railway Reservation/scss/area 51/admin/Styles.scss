@@ -1,45 +1,46 @@
 main {
   display: flex;
+  width: 100%;
   .menu {
     position: sticky;
     top: 10vh;
     left: 0;
-    width: 18vw;
+    right: 0;
+    width: 20%;
     background-color: #f0f0f0;
     height: 90vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
     border: none;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-
+    padding: 20px; 
+    box-sizing: border-box; 
+    gap: 20px;
+  
     .list {
-      width: 90%;
+      width: calc(100% - 20px); 
       height: auto;
       display: flex;
       align-items: center;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 10px 0 10px 10px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s, transform 0.3s;
       text-decoration: none;
       color: inherit;
-
+  
       &:hover {
         background-color: #e0e0e0;
         transform: scale(1.05);
       }
-
+  
       img {
         width: 30px;
         height: 30px;
         margin-right: 15px;
       }
-
+  
       .title {
         font-weight: 600;
         font-size: 16px;
@@ -49,7 +50,7 @@ main {
   }
 
   .main {
-    width: 82vw;
+    width: 100%;
     .list {
       height: 10vh;
       width: 100%;
@@ -219,50 +220,51 @@ main {
   @media (max-width: 1024px) {
     // Medium screens (tablets)
     flex-direction: column;
-
-    .menu,
+    
     .main {
       width: 100%;
-      .list,
       .add,
       .table-heading,
-      .table-data {
-        width: auto;
-        flex-direction: column;
+      .table-data,
+      .table-title{
+        justify-content: space-around;
+        width: 100%;
+        flex-direction: row;
+        overflow-x: scroll;
       }
     }
   }
 
-  @media (max-width: 768px) {
-    // Small screens (mobile devices)
-    .menu {
-      position: fixed;
-      bottom: 0;
-      height: auto;
-      width: 100%;
-      flex-direction: row;
-      justify-content: center;
-      .list {
-        flex-direction: column;
-        margin: 5px 0;
-      }
-    }
+  // @media (max-width: 768px) {
+  //   // Small screens (mobile devices)
+  //   .menu {
+  //     position: fixed;
+  //     bottom: 0;
+  //     height: auto;
+  //     width: 100%;
+  //     flex-direction: row;
+  //     justify-content: center;
+  //     .list {
+  //       flex-direction: column;
+  //       margin: 5px 0;
+  //     }
+  //   }
 
-    .main {
-      padding-top: 60px; // Adjust based on .menu height
-      .list,
-      .add {
-        flex-direction: column;
-      }
-    }
+  //   .main {
+  //     padding-top: 60px; // Adjust based on .menu height
+  //     .list,
+  //     .add {
+  //       flex-direction: column;
+  //     }
+  //   }
 
-    .table {
-      .table-heading,
-      .table-data {
-        flex-direction: column;
-      }
-    }
-  }
+  //   .table {
+  //     .table-heading,
+  //     .table-data {
+  //       flex-direction: column;
+  //     }
+  //   }
+  // }
 }
 
 .Pending,
@@ -287,3 +289,105 @@ main {
   text-decoration: none;
   color: inherit;
 }
+
+.hamburger, .close-btn {
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.hamburger {
+  display: none;
+}
+
+.close-btn {
+  display: none;
+}
+
+.body-blur {
+  filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+
+  #menu {
+    display: none; 
+    flex-direction: column;
+    position: absolute; 
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    justify-content: flex-start;
+    z-index: 1000; /* Ensure it's above other content */
+
+    .close-btn {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    a {
+      padding: 20px 20px 20px 20px;
+      width: 80%; /* Adjusted to full width for better mobile view */
+    }
+  }
+
+  .hamburger {
+    display: block;
+    position: fixed; /* Ensure hamburger is always accessible */
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    z-index: 1001; /* Above the menu */
+  }
+
+  nav {
+    display: flex;
+    position: relative; /* Ensure nav is positioned correctly for absolute positioning of menu */
+    z-index: 1000; /* Ensure nav is above the menu */
+    .logo{
+      padding-left: 60px;
+      img{
+        width: 40px;
+        height: 40px;
+      
+      }
+      .title{
+        font-size: medium;
+      }
+    }
+  }
+
+  #topmenu {
+    width: 50%;
+    .title {
+      display: none;
+    }
+  }
+
+  
+
+  #bottommain {
+    width: 100%;
+    .list {
+      // justify-content: center;
+      .add {
+        display: flex;
+        width: 40%;
+        flex-direction: row;
+        font-size: 0.5rem;
+      }
+      .stationadd{
+        display: flex;
+        width: 70%;
+        padding-left: 30px;
+        flex-direction: row;
+         font-size: 0.5rem;
+      }
+    }
+  }
+}
+

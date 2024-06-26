@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../scss/main/nav/css/nav.css" />
     <link rel="stylesheet" href="../scss/global/css/Styles.css" />
-    <link rel="stylesheet" href="../scss/ticket/css/Styles.css">
+    <link rel="stylesheet" href="../scss/ticket/css/Styles.css" />
   </head>
   <body>
     <nav>
@@ -75,5 +75,17 @@
         </div>
       </div>
     </main>
+    <script>
+      axios
+        .get(`${URLS.base}/api/Ticket/`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+    <script src="../js/config.js"></script>
   </body>
 </html>
