@@ -1,0 +1,126 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('https://slidechef.net/wp-content/uploads/2022/11/Wordle-Game-Slide.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.container {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.message {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #cccccc;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #222222;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.cell.correct {
+    background-color: #6aaa64;
+    color: white;
+    border: 2px solid #6aaa64;
+}
+
+.cell.present {
+    background-color: #c9b458;
+    color: white;
+    border: 2px solid #c9b458;
+}
+
+.cell.absent {
+    background-color: #787c7e;
+    color: white;
+    border: 2px solid #787c7e;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.key {
+    padding: 10px;
+    margin: 2px;
+    background-color: #333333;
+    border: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 40px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px #999;
+    color: white;
+}
+
+.key:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+
+.large-key {
+    width: 80px;
+}
+
+.key.correct {
+    background-color: #6aaa64;
+}
+
+.key.present {
+    background-color: #c9b458;
+}
+
+.key.absent {
+    background-color: #787c7e;
+}
